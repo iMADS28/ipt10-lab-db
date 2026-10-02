@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $program = trim($_POST['program'] ?? '');
     $enrolment_date = trim($_POST['enrolment_date'] ?? '');
 
-    // TODO(10): validate first and last names
 
     if (
         empty($first_name) ||
@@ -48,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'Last name is required and must be 2-100 characters using letters and spaces only.';
     }
 
-    // TODO(11): validate email and birthday
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = 'Please enter a valid email address.';
@@ -58,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['birthday'] = 'Birthday must be in YYYY-MM-DD format.';
     }
 
-    // TODO(12): validate sex
 
     if (!in_array($sex, ['Male', 'Female'], true)) {
         $errors['sex'] = 'Sex must be Male or Female.';
@@ -66,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
 
-        // TODO(13): INSERT
 
         $stmt = $conn->prepare(
             'INSERT INTO students
@@ -75,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES (UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?)'
         );
 
-        // TODO(14): bind parameters
 
         $stmt->bind_param(
             'sssssssss',

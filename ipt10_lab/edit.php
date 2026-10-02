@@ -12,7 +12,6 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // TODO(15): collect + trim the posted fields
     $first_name = trim($_POST['first_name'] ?? '');
     $middle_name = trim($_POST['middle_name'] ?? '');
     $last_name = trim($_POST['last_name'] ?? '');
@@ -23,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $program = trim($_POST['program'] ?? '');
     $enrolment_date = trim($_POST['enrolment_date'] ?? '');
 
-    // Same validation rules as create.php
 
     if (
         empty($first_name) ||
@@ -59,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
 
-        // TODO(16)
         $stmt = $conn->prepare(
             'UPDATE students
              SET first_name = ?, middle_name = ?, last_name = ?,
@@ -84,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->execute();
 
-        // TODO(17)
         if ($stmt->affected_rows > 0) {
             $success = 'Student updated successfully.';
         } else {
@@ -97,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 } else {
 
-    // Fetch existing row by UUID
     $stmt = $conn->prepare(
         'SELECT * FROM students WHERE id = ?'
     );

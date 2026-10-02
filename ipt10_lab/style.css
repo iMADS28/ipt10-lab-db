@@ -9,7 +9,6 @@ h2 {
     margin-bottom: 15px;
 }
 
-/* Create button */
 
 .create-btn {
     display: inline-block;
@@ -25,7 +24,6 @@ h2 {
     background: #555;
 }
 
-/* Table */
 
 table {
     width: 100%;
@@ -44,7 +42,6 @@ td {
     border: 1px solid #ddd;
 }
 
-/* Action buttons */
 
 .actions {
     white-space: nowrap;
@@ -76,7 +73,6 @@ td {
     opacity: 0.8;
 }
 
-/* Form pages */
 
 .form-container {
     max-width: 600px;

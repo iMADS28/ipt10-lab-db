@@ -4,20 +4,17 @@ require_once 'db_connect.php';
 $id = trim($_GET['id'] ?? '');
 if ($id === '') { die('Invalid student ID'); }
 
-// TODO(7)
 $stmt = $conn->prepare('SELECT * FROM students WHERE id = ?');
 
 $stmt->bind_param('s', $id);
 $stmt->execute();
 
-// TODO(8)
 $result = $stmt->get_result();
 $row = $result->fetch_assoc();
 
 if (!$row) {
     echo '<p>Student not found.</p>';
 } else {
-// TODO(9)
 ?>
 <h2>Student Details</h2>
 

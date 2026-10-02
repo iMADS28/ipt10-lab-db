@@ -6,8 +6,7 @@ if ($id === '') {
     die('Invalid student ID');
 }
 
-// Step 1 | look up the student so the confirmation screen can name them.
-// TODO(18)
+
 $s = $conn->prepare('SELECT first_name, last_name FROM students WHERE id = ?');
 $s->bind_param('s', $id);
 $s->execute();
@@ -21,8 +20,7 @@ if (!$r) {
     exit;
 }
 
-// Step 2 | delete only when the confirmation form was submitted.
-// TODO(19)
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $d = $conn->prepare('DELETE FROM students WHERE id = ?');
     $d->bind_param('s', $id);
@@ -36,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $conn->close();
 } else {
-    // TODO(20)
+   
     echo '<h2>Delete Student</h2>';
     echo '<p>Are you sure you want to delete '
         . htmlspecialchars($r['first_name'] . ' ' . $r['last_name'])
