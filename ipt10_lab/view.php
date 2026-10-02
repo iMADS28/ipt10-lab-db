@@ -1,0 +1,38 @@
+<?php
+require_once 'db_connect.php';
+
+$id = trim($_GET['id'] ?? '');
+if ($id === '') { die('Invalid student ID'); }
+
+// TODO(7)
+$stmt = $conn->prepare('SELECT * FROM students WHERE id = ?');
+
+$stmt->bind_param('s', $id);
+$stmt->execute();
+
+// TODO(8)
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+if (!$row) {
+    echo '<p>Student not found.</p>';
+} else {
+// TODO(9)
+?>
+<h2>Student Details</h2>
+
+<p><strong>Student ID:</strong> <?= htmlspecialchars($row['id']) ?></p>
+<p><strong>Full Name:</strong> <?= htmlspecialchars($row['first_name'] . ' ' . $row['middle_name'] . ' ' . $row['last_name']) ?></p>
+<p><strong>Birthday:</strong> <?= htmlspecialchars($row['birthday']) ?></p>
+<p><strong>Sex:</strong> <?= htmlspecialchars($row['sex']) ?></p>
+<p><strong>Email:</strong> <?= htmlspecialchars($row['email']) ?></p>
+<p><strong>Student Number:</strong> <?= htmlspecialchars($row['student_number']) ?></p>
+<p><strong>Program:</strong> <?= htmlspecialchars($row['program']) ?></p>
+<p><strong>Enrolment Date:</strong> <?= htmlspecialchars($row['enrolment_date']) ?></p>
+<p><strong>Created At:</strong> <?= htmlspecialchars($row['created_at']) ?></p>
+
+<?php
+}
+$stmt->close();
+$conn->close();
+?>
