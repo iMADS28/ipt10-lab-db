@@ -1,6 +1,5 @@
 # ipt10-lab-db
 
-# IPT10 Database Programming Laboratory
 
 ## Requirements
 
